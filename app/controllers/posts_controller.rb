@@ -17,10 +17,10 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id # ログインユーザのIDを代入して関連付け
 
     if @post.save
-      flash[:notice] = '投稿しました' # 成功時のフラッシュメッセージ
+      flash[:notice] = t('.success') # 成功時のフラッシュメッセージ
       redirect_to root_path # 一時的にトップページへリダイレクト(後に修正)
     else
-      flash[:alert] = '投稿に失敗しました' # 失敗時のフラッシュメッセージ
+      flash[:alert] = t('.failure') # 失敗時のフラッシュメッセージ
       render :new # 投稿画面を再表示
     end
   end

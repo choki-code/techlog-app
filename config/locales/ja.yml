@@ -1,0 +1,5 @@
+ja:
+  posts:
+    create:
+      success: '投稿しました'
+      failure: '投稿に失敗しました'
