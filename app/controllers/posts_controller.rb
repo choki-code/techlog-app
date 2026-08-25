@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
+    @posts = Post.limit(10).order(created_at: :desc)
   end
 
   def show
@@ -13,15 +14,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params) # ストロングパラメータを使ってフォームから受け取ったパラメータを許可
-    @post.user_id = current_user.id # ログインユーザのIDを代入して関連付け
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     if @post.save
-      flash[:notice] = t('.success') # 成功時のフラッシュメッセージ
-      redirect_to root_path # 一時的にトップページへリダイレクト(後に修正)
+      flash[:notice] = '投稿しました'
+      redirect_to posts_path # トップページから投稿一覧ページへ変更
     else
-      flash[:alert] = t('.failure') # 失敗時のフラッシュメッセージ
-      render :new # 投稿画面を再表示
+      flash[:alert] = '投稿に失敗しました'
+      render :new
     end
   end
 
