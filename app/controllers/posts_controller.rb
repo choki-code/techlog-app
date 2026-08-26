@@ -39,6 +39,6 @@ class PostsController < ApplicationController
 
   # ストロングパラメータで許可するカラムを指定
   def post_params
-    params.expect(post: [:title, :content]) # title と content のみ許可
+    params.expect(post: [:title]) # title と content のみ許可
   end
 end
