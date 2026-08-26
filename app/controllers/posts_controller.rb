@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @posts = Post.limit(10).order(created_at: :desc)
+    @post = Post.limit(10).order(created_at: :desc)
   end
 
   def show
