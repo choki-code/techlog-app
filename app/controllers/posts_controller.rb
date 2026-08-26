@@ -18,10 +18,10 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     if @post.save
-      flash[:notice] = '投稿しました'
+      flash[:notice] = t('.success')
       redirect_to posts_path # トップページから投稿一覧ページへ変更
     else
-      flash[:alert] = '投稿に失敗しました'
+      flash[:alert] = t('.failure')
       render :new
     end
   end
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     post = Post.find_by(id: params[:id])
     if post.user == current_user
       post.destroy
-      flash[:notice] = '投稿が削除されました'
+      flash[:notice] = t('.success')
     end
     redirect_to posts_path
   end
