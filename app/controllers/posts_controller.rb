@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
 
-    if @post.save
+    if @post.valid?
       flash[:notice] = t('.success')
       redirect_to posts_path # トップページから投稿一覧ページへ変更
     else
